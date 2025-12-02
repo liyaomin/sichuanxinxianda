@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四川信先达网络科技有限公司 - 四川信先达 | 智能云计算服务商</title>
+    <style>
+        :root {
+            --bg-color: #0b1120; /* 深邃科技蓝黑 */
+            --card-bg: #1e293b;  /* 卡片背景 */
+            --primary-color: #3b82f6; /* 科技蓝 */
+            --accent-color: #06b6d4;  /* 青色高亮 */
+            --text-color: #f1f5f9;    /* 亮白文字 */
+            --text-muted: #94a3b8;    /* 灰度文字 */
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            line-height: 1.6; 
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        /* Utility */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5); }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { display: flex; align-items: center; font-size: 20px; font-weight: 700; letter-spacing: 1px; color: #fff; }
+        .logo img { height: 40px; margin-right: 12px; border-radius: 8px; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { color: var(--text-muted); font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* Hero */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.1), transparent 40%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        .hero-content { max-width: 800px; z-index: 2; }
+        .hero h1 { 
+            font-size: 56px; 
+            line-height: 1.1; 
+            margin-bottom: 24px; 
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 20px; color: var(--text-muted); margin-bottom: 40px; max-width: 600px; }
+        
+        /* Sections */
+        section { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 36px; margin-bottom: 16px; color: #fff; }
+        .section-header p { color: var(--text-muted); font-size: 18px; }
+
+        /* Services Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary-color); background: #253248; }
+        .icon { 
+            width: 60px; height: 60px; 
+            background: rgba(59, 130, 246, 0.1); 
+            border-radius: 12px; 
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: var(--primary-color);
+            margin-bottom: 24px;
+        }
+        .card h3 { margin-bottom: 16px; font-size: 20px; color: #fff; }
+        .card p { color: var(--text-muted); font-size: 15px; }
+
+        /* About Split */
+        .split { display: flex; align-items: center; gap: 60px; }
+        .split-text { flex: 1; }
+        .split-text h2 { font-size: 36px; margin-bottom: 20px; color: #fff; }
+        .split-text p { color: var(--text-muted); margin-bottom: 20px; }
+        .split-img { flex: 1; }
+        .split-img img { width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); }
+
+        /* Contact */
+        .contact-info { 
+            background: linear-gradient(135deg, #1e293b, #0f172a); 
+            padding: 60px; 
+            border-radius: 24px; 
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .contact-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; margin-top: 40px; }
+        .contact-item h4 { color: var(--accent-color); margin-bottom: 8px; font-size: 18px; }
+        .contact-item p { color: var(--text-muted); }
+
+        /* Footer */
+        footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0; text-align: center; color: var(--text-muted); font-size: 14px; background: #050911; }
+
+        /* Stats Section */
+        .stats-section {
+            background: #0f172a;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 40px 0;
+            margin-top: -1px;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .stat-item h3 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 40px; }
+            .split { flex-direction: column; }
+            .nav-links { display: none; }
+            .contact-grid { flex-direction: column; gap: 30px; }
+            .hero { height: auto; padding: 100px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <!-- 生成科技感Logo -->
+                <img src="https://ui-avatars.com/api/?name=CQ+Xunying&background=3b82f6&color=fff&size=128&rounded=true&bold=true" alt="Logo">
+                四川信先达
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#solutions">解决方案</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>驱动数字未来<br>智算无限可能</h1>
+                <p>四川信先达网络科技有限公司，依托自研高性能计算架构，为全球企业提供从基础设施到人工智能的一站式云端服务。</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#contact" class="btn">立即咨询</a>
+                    <a href="#solutions" class="btn" style="background: rgba(255,255,255,0.1); box-shadow: none; border: 1px solid rgba(255,255,255,0.2);">查看产品</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>99.99%</h3>
+                    <p>SLA 服务可用性</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>全球数据中心节点</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>全天候技术支持</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>企业客户信赖</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Solutions Section -->
+    <section id="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2>全栈式云服务体系</h2>
+                <p>深度融合计算、存储、网络与安全，构建坚实的数字底座</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon">☁️</div>
+                    <h3>弹性计算 ECS</h3>
+                    <p>基于新一代虚拟化技术，提供秒级启动、弹性伸缩的云服务器。支持异构计算，满足深度学习、图形渲染等高算力需求。</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🛡️</div>
+                    <h3>云安全中心</h3>
+                    <p>集成 DDoS 高防、WAF 应用防火墙及主机安全卫士。通过 AI 威胁情报分析，实时阻断网络攻击，保障业务零中断。</p>
+                </div>
+                <div class="card">
+                    <div class="icon">📊</div>
+                    <h3>大数据与 BI</h3>
+                    <p>提供海量数据采集、存储、计算与可视化的一站式平台。打破数据孤岛，助力企业从数据中挖掘商业价值，辅助决策。</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🤖</div>
+                    <h3>AI 行业解决方案</h3>
+                    <p>开放 OCR 识别、NLP 自然语言处理及人脸识别 API。针对金融、零售、制造等场景提供定制化 AI 模型训练与部署。</p>
+                </div>
+                <div class="card">
+                    <div class="icon">🌐</div>
+                    <h3>全球内容分发 CDN</h3>
+                    <p>依托全球 2800+ 边缘节点，智能调度网络链路，显著降低访问延迟，为用户提供极致流畅的音视频与网页浏览体验。</p>
+                </div>
+                <div class="card">
+                    <div class="icon">💾</div>
+                    <h3>对象存储 OSS</h3>
+                    <p>海量、安全、低成本、高可靠的云存储服务。提供 99.9999999999% 的数据持久性，支持标准、低频、归档多种存储类型。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="split">
+                <div class="split-img">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c54be3855833?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="现代化数据中心">
+                </div>
+                <div class="split-text">
+                    <h2>关于四川信先达</h2>
+                    <p>四川信先达网络科技有限公司（简称“重庆寻影”）成立于数字经济蓬勃发展的浪潮中，是一家专注于云计算底层技术研发与应用的高新技术企业。公司总部位于重庆市南岸区，并在北京、深圳设有研发中心。</p>
+                    <p>我们的核心团队来自国内外顶尖互联网企业，拥有超过 10 年的分布式系统研发经验。重庆寻影致力于通过技术创新，降低企业上云门槛，解决企业在数字化转型过程中面临的“算力瓶颈”与“数据安全”难题。</p>
+                    <p>作为智能云计算服务商，我们始终坚持“技术为本，服务至上”的理念，已成功服务于电商、游戏、金融、教育等多个行业的数百家客户，成为西南地区最具影响力的云服务品牌之一。</p>
+                    <a href="#contact" class="btn" style="background: transparent; border: 1px solid var(--primary-color); color: var(--primary-color);">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-info">
+                <div class="section-header" style="margin-bottom: 40px;">
+                    <h2>联系我们</h2>
+                    <p>随时为您提供专业的技术支持与咨询</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <h4>📍 公司地址</h4>
+                        <p>四川省南充市顺庆区什字上街117号1幢1层9号</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📧 商务邮箱</h4>
+                        <p>dev@sichuanxinxianda.asia</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>📞 客服热线</h4>
+                        <p>13926712303</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 四川信先达网络科技有限公司 版权所有</p>
+        </div>
+    </footer>
+
+</body>
+</html>
